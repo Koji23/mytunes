@@ -9,22 +9,24 @@ var SongQueue = Backbone.Collection.extend({
         this.playFirst();
       }
     });
+
     this.on('ended', function() {
       this.remove(this.models[0]);
-      console.log('reached ended handler inside of init');
+      console.log('ended detected from within songqueue collection');
       if (this.length >= 1) {
         this.playFirst();
       }
     });
+
+    this.on('enqueue', function(context) {
+      this.add(context);
+      console.log("enqueue heard from within songqueue collection");
+
+    });
+
     this.on('dequeue', function(context) {
       this.remove(context);
     });
-  },
-
-  events: {
-    enqueue: function(context) { 
-      this.add(context);
-    },
   },
 
   playFirst: function() {
