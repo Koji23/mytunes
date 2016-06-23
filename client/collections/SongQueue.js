@@ -18,11 +18,6 @@ var SongQueue = Backbone.Collection.extend({
       }
     });
 
-    // this.on('enqueue', function(context) {
-    //   this.add(context);
-    //   console.log("enqueue heard from within songqueue collection");
-
-    // });
 
     this.on('dequeue', function(context) {
       this.remove(context);
