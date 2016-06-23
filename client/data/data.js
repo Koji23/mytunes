@@ -21,3 +21,7 @@ var songData = [
     artist: 'Aaliyah',
   }
 ];
+
+
+// make an ajax request; when it returns update songData with it.
+// whatever object initially loaded songData will need to reload it.

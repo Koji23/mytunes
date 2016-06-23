@@ -5,23 +5,16 @@ var SongQueueView = Backbone.View.extend({
   initialize: function() {
     this.render();
 
-    // listen for changes in the SongQueueView, which we can accesss.....
-    //this.songQueueView = new SongQueueView({collection: this.model.get('songQueue')});
-    //console.log('this is the songQueueViews collection', SongQueueView.get('collection'));
-
-
-    this.collection.on('enqueue', function(event) {
-      console.log("Hello from sqView");
+    this.collection.on('add', function(event) {
       this.render();
+    }, this);
+
+    this.collection.on('remove', function() {
+      this.render();
+      console.log('remove heard, render');
     }, this);
   },
 
-  // events: {
-  //   'enqueue': function(context) {
-  //     this.render();
-  //     console.log('hello');
-  //   }
-  // },
 
   render: function() {
     // to preserve event handlers on child nodes, we must call .detach() on them before overwriting with .html()
@@ -31,7 +24,6 @@ var SongQueueView = Backbone.View.extend({
     this.$el.html('<th>Song Queue</th>').append(
       this.collection.map(function(song) {
         var html = new SongQueueEntryView({model: song}).render();
-        console.log('html', + html);
         return html;
       })
     );
