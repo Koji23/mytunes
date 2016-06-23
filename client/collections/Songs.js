@@ -39,6 +39,7 @@ var Songs = Backbone.Collection.extend({
         //   context.add(datum);
         // });
         console.log(context);
+        context.trigger('ajaxdone');
 
       },
       error: function() {
