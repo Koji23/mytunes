@@ -1,10 +1,6 @@
 // Songs.js - Defines a backbone collection class for songs.
 var Songs = Backbone.Collection.extend({
-
-  model: SongModel,
-
-
-  request: function() {
+  initialize: function() {
     var context = this;
     return $.ajax({
       url: 'https://api.parse.com/1/classes/songs',
@@ -22,6 +18,29 @@ var Songs = Backbone.Collection.extend({
         console.log(':(');
       }
     });
-  }
+  },
+
+  model: SongModel,
+
+
+  // request: function() {
+  //   var context = this;
+  //   return $.ajax({
+  //     url: 'https://api.parse.com/1/classes/songs',
+  //     type: 'GET', 
+  //     dataType: 'json',
+  //     contentType: 'application/json',
+  //     success: function(data) {
+  //       console.log(context);
+  //       _.each(data, function(datum) {
+  //         context.add(datum);
+  //       });
+  //       console.log(context);
+  //     },
+  //     error: function() {
+  //       console.log(':(');
+  //     }
+  //   });
+  // }
 
 });
