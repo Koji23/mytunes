@@ -4,10 +4,16 @@ var SongQueueView = Backbone.View.extend({
 
   initialize: function() {
     this.render();
-    this.on('enqueue', function(event) {
+
+    // listen for changes in the SongQueueView, which we can accesss.....
+    //this.songQueueView = new SongQueueView({collection: this.model.get('songQueue')});
+    //console.log('this is the songQueueViews collection', SongQueueView.get('collection'));
+
+
+    this.collection.on('enqueue', function(event) {
       console.log("Hello from sqView");
       this.render();
-    });
+    }, this);
   },
 
   // events: {
